@@ -1,13 +1,13 @@
 import { CloudRequest } from '../utils/cloud-request.js'
-class AppointModel extends CloudRequest {
+class CourseModel extends CloudRequest {
     /**
      * 获取分类
      * @param {*} callBack 
      */
-    getAppoint(callBack){
-        console.log("我们到getAppoint了")
+    getAllCourse(callBack){
+        console.log("我们到getAllCourse了")
         this.request({
-            url: "getappoint",
+            url: "getAllCourse",
             success: res => {
                 console.log(res.data);
               callBack(res)

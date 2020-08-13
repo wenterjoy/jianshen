@@ -10,6 +10,7 @@ App({
         key: 'mallName'
       },
       success: function(res) {
+        console.log(res.data);
         wx.setStorageSync('mallName', res.data.data.value);
       }
     })
@@ -26,6 +27,7 @@ App({
           token: token
         },
         success: function (res) {
+          console.log(res.data);
           if (res.data.code != 0) {
             that.globalData.token = null;
             that.login();
@@ -42,6 +44,7 @@ App({
             code: res.code
           },
           success: function(res) {
+            console.log(res.data);
             if (res.data.code == 10000) {
               // 去注册
               that.registerUser();
@@ -70,6 +73,7 @@ App({
         var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
         wx.getUserInfo({
           success: function (res) {
+            console.log(res.data);
             var iv = res.iv;
             var encryptedData = res.encryptedData;
             // 下面开始调用注册接口
@@ -77,6 +81,7 @@ App({
               url: 'https://api.it120.cc/' + that.globalData.subDomain +'/user/wxapp/register/complex',
               data: {code:code,encryptedData:encryptedData,iv:iv}, // 设置请求的 参数
               success: (res) =>{
+                console.log(res.data);
                 wx.hideLoading();
                 that.login();
               }
@@ -89,6 +94,7 @@ App({
   getUserInfo:function() {
     wx.getUserInfo({
       success:(data) =>{
+        console.log(res.data);
         this.globalData.userInfo = data.userInfo;
         console.log(this.globalData.userInfo);
         return this.globalData.userInfo;

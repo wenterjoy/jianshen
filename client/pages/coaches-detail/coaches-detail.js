@@ -35,7 +35,7 @@ Page({
         id: coachId
       },
       success: function (res) {
-        console.log(res);
+        console.log(res.data);
         const coach = res.data.data;
         that.setData({
           coach

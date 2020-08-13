@@ -9,6 +9,7 @@ class CategoryModel extends CloudRequest {
         this.request({
             url: "getCategoryMenu",
             success: res => {
+                console.log(res.data);
               callBack(res)
             }
         })
@@ -24,6 +25,7 @@ class CategoryModel extends CloudRequest {
             url: "getCategoryProduct",
             data:category_type,
             success: res => {
+                console.log(res.data);
               callBack(res)
             }
         })

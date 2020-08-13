@@ -2,7 +2,7 @@
 //获取应用实例
 var app = getApp();
 var WxParse = require('../../wxParse/wxParse.js');
-
+console.log("赵鑫")
 Page({
   data: {
     autoplay: true,
@@ -55,6 +55,7 @@ Page({
         id: e.id
       },
       success: function(res) {
+        console.log(res.data);
         var selectSizeTemp = "";
         console.log(res)
         if (res.data.data.properties) {

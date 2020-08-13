@@ -11,6 +11,7 @@ class OrderModel extends CloudRequest {
             url: "creatOrder",
             data: { orderData: orderData },
             success: res => {
+                console.log(res.data);
                 callBack(res)
             }
         })
@@ -26,6 +27,7 @@ class OrderModel extends CloudRequest {
             url: "getOrderById",
             data: { orderId: orderId },
             success: res => {
+                console.log(res.data);
                 callBack(res)
             }
         })
@@ -39,6 +41,7 @@ class OrderModel extends CloudRequest {
         this.request({
             url: "getOrderList",
             success: res => {
+                console.log(res.data);
                 callBack(res)
             }
         })

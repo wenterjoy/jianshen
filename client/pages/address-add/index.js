@@ -102,6 +102,7 @@ Page({
       success: function(res) {
         if (res.data.code != 0) {
           // 登录错误 
+          console.log(res.data);
           wx.hideLoading();
           wx.showModal({
             title: '失败',

@@ -42,6 +42,7 @@ Component({
     addressInfo(event){      
       wx.chooseAddress({
         success: (res) => {
+          console.log(res.data);
           this.setData({
             addressInfo: res
           })

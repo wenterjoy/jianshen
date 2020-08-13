@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+import { CourseModel } from '../../models/CourseModel.js'
+let course = new CourseModel()
 var app = getApp()
 Page({
   data: {
@@ -72,37 +74,61 @@ Page({
       })
     })
     */
-    wx.request({
-      url: 'https://api.it120.cc/'+ app.globalData.subDomain +'/banner/list',
-      data: {
-        key: 'mallName'
-      },
-      success: function(res) {
-        var banners = [];
-        for (var i = 0; i < res.data.data.length; i++) {
-          if (res.data.data[i].type == "goods") {
-            banners.push(res.data.data[i]);
-          }
-        }
-        that.setData({
-          banners: banners
-        });
-      }
-    })
-    wx.request({
-      url: 'https://api.it120.cc/'+ app.globalData.subDomain +'/shop/goods/category/all',
-      success: function(res) {
-        var categories = [{id:0, name:"全部"}];
-        for(var i=0;i<res.data.data.length;i++){
-          categories.push(res.data.data[i]);
-        }
-        that.setData({
-          categories:categories,
-          activeCategoryId:0
-        });
-        that.getGoodsList(0);
-      }
-    })
+   course.getAllCourse(res=>{
+    console.log(res.result.data.data);
+    var banners = [];
+    for (var i = 0; i < res.data.data.length; i++) {
+      // if (res.data.data[i].type == "goods") {
+      //   banners.push(res.data.data[i]);
+      // }
+      banners.push(res.data.data[i]);
+    }
+    this.setData({
+      banners: banners
+    });
+
+    var categories = [{id:0, name:"全部"}];
+    // for(var i=0;i<res.data.data.length;i++){
+    //   categories.push(res.data.data[i]);
+    // }
+    that.setData({
+      categories:categories,
+      activeCategoryId:0
+    });
+    that.getGoodsList(0);
+  })
+    // wx.request({
+    //   url: 'getAllCourse',
+    //   data: {
+    //     key: 'mallName'
+    //   },
+    //   success: function(res) {
+    //     console.log(res);
+    //     var banners = [];
+    //     for (var i = 0; i < res.data.data.length; i++) {
+    //       if (res.data.data[i].type == "goods") {
+    //         banners.push(res.data.data[i]);
+    //       }
+    //     }
+    //     that.setData({
+    //       banners: banners
+    //     });
+    //   }
+    // })
+    // wx.request({
+    //   url: 'https://api.it120.cc/'+ app.globalData.subDomain +'/shop/goods/category/all',
+    //   success: function(res) {
+    //     var categories = [{id:0, name:"全部"}];
+    //     for(var i=0;i<res.data.data.length;i++){
+    //       categories.push(res.data.data[i]);
+    //     }
+    //     that.setData({
+    //       categories:categories,
+    //       activeCategoryId:0
+    //     });
+    //     that.getGoodsList(0);
+    //   }
+    // })
 
   },
   getGoodsList: function (categoryId) {

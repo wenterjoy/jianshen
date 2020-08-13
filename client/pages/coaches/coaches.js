@@ -22,6 +22,7 @@ Page({
         categoryId: options.coachid
       },
       success: function (res) {
+        console.log(res.data);
         var coaches = [];
         for (var i = 0; i < res.data.data.length; i++) {
           coaches.push(res.data.data[i]);
