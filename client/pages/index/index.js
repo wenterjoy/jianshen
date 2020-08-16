@@ -75,7 +75,7 @@ Page({
     })
     */
    course.getAllCourse(res=>{
-    console.log(res.result.data.data);
+    console.log(res.result.data);
     var banners = [];
     for (var i = 0; i < res.data.data.length; i++) {
       // if (res.data.data[i].type == "goods") {
