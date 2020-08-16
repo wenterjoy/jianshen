@@ -28,6 +28,7 @@ Page({
 
     console.log('onLoad');
     var imagetest = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/home/home.jpg";
+   
     var envpics = [];
      envpics.push(imagetest);
      this.setData({

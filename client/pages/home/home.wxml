@@ -38,7 +38,8 @@
         </view>
     </view>
     <view class="envimg" wx:for="{{envpic}}">
-        <image src="{{item.picUrl}}"></image>
+        <!-- <image src="{{item.picUrl}}"></image> -->
+        <image src="../../images/coaches/000001.jpg"></image>
     </view>
 </view>
   <view class="zan-panel">
@@ -87,4 +88,4 @@
         </block>
     </view>
 </view>
-<view class="footaboutme"><text>技术支持：智汇番茄科技工作室\r\nWechat：18629027590</text></view>
+<view class="footaboutme"><text>技术支持：勤智科技\r\nWechat：18519222175</text></view>

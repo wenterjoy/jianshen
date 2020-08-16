@@ -11,7 +11,7 @@ const baseTest = require('test/models/BaseModelTest.js')
 const appoint = require('service/appointService.js')
 const image = require('service/imageService.js')
 cloud.init()
-const IMAGEPREFIX = "cloud://release-prod.7265-release-prod"
+const IMAGEPREFIX = "cloud://release-prod.7265-release-prod/"
 
 
 // 云函数入口函数

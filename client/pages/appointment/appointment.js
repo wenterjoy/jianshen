@@ -2,7 +2,9 @@
 import { AppointModel } from '../../models/AppointModel.js'
 var app = getApp()
 let appoint = new AppointModel()
-const IMAGEPREFIX = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/" + "cocaches/"
+//const IMAGEPREFIX = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/" + "cocaches/"
+const IMAGEPREFIX = "../../images/" + "coaches/"
+
 Page({
 
   /**
@@ -98,33 +100,33 @@ Page({
     })
    
   },
-  getNewsList: function (categoryId) {
-    if (categoryId == 0) {
-      categoryId = "";
-    }
-    //console.log(categoryId)
-    var that = this;
-    wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/cms/news/list',
-      data: {
-        categoryId: categoryId
-      },
-      success: function (res) {
-        var StarCoaches = [];
-        var Coaches = [];
-        for (var i = 0; i < res.data.data.length; i++) {
-          if (res.data.data[i].isRecommend === true){
-            StarCoaches.push(res.data.data[i]);
-          }
-          else{
-            Coaches.push(res.data.data[i]);
-          }
-        }
-        that.setData({
-          coaches: Coaches,
-          starCoaches: StarCoaches
-        });
-      }
-    });
-  }
+  // getNewsList: function (categoryId) {
+  //   if (categoryId == 0) {
+  //     categoryId = "";
+  //   }
+  //   //console.log(categoryId)
+  //   var that = this;
+  //   wx.request({
+  //     url: 'https://api.it120.cc/' + app.globalData.subDomain + '/cms/news/list',
+  //     data: {
+  //       categoryId: categoryId
+  //     },
+  //     success: function (res) {
+  //       var StarCoaches = [];
+  //       var Coaches = [];
+  //       for (var i = 0; i < res.data.data.length; i++) {
+  //         if (res.data.data[i].isRecommend === true){
+  //           StarCoaches.push(res.data.data[i]);
+  //         }
+  //         else{
+  //           Coaches.push(res.data.data[i]);
+  //         }
+  //       }
+  //       that.setData({
+  //         coaches: Coaches,
+  //         starCoaches: StarCoaches
+  //       });
+  //     }
+  //   });
+  // }
 })

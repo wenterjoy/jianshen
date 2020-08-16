@@ -36,7 +36,9 @@
         <block wx:for="{{ coaches }}">
             <view class="article__item">
                 <view class="article__thumb">
+                    <!-- <image class="article__image" src="cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/cocaches/000001.jpg" ></image> -->
                     <image class="article__image" src="{{ item.pic }}"></image>
+                    <!-- <image class="article__image" src="../../images/coaches/000002.jpg"></image> -->
                 </view>
                 <view class="article__info">
                     <view class="article__title">
