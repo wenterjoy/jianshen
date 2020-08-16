@@ -36,6 +36,8 @@ Page({
           id: that.data.orderId
         },
         success: (res) => {
+          console.log("liqin   order");
+        console.log(res.data);
           wx.hideLoading();
           if (res.data.code != 0) {
             wx.showModal({
