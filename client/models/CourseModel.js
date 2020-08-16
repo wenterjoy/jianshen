@@ -31,4 +31,4 @@ class CourseModel extends CloudRequest {
     }
 
 }
-export {AppointModel }
+export {CourseModel }
