@@ -2,7 +2,9 @@
 module.exports = {
     APPOINT_FIELD: {
       coach_name: true,
-      name: true,
-      _id:false
+      coach_id: true,
+      pic: true,
+      keywords: true,
+      _id: true
     }
   }

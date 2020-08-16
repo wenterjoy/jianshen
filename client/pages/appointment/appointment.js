@@ -2,6 +2,7 @@
 import { AppointModel } from '../../models/AppointModel.js'
 var app = getApp()
 let appoint = new AppointModel()
+const IMAGEPREFIX = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/" + "cocaches/"
 Page({
 
   /**
@@ -75,17 +76,20 @@ Page({
     
     appoint.getAppoint(res=>{
       console.log(res.result.data.data);
-      //   let  menuCategories =  res.result.data.data
+      let  menuCategories =  res.result.data.data;
       //   let Coaches = []
       //   for(let index in menuCategories) {  
       //     Coaches.push( menuCategories[index].category_name);
       // };  
       var StarCoaches = [];
       var Coaches = [];
-
-      for (var i = 0; i < res.result.data.data.length; i++) {
-        StarCoaches.push(res.result.data.data[i]);
-        Coaches.push(res.result.data.data[i]);
+      
+      for (var i = 0; i < menuCategories.length; i++) {
+        menuCategories[i].pic = IMAGEPREFIX + menuCategories[i].pic;
+        console.log(menuCategories[i].pic);
+        StarCoaches.push(menuCategories[i]);
+        //console.log(res.result.data.data[i]);
+        Coaches.push(menuCategories[i]);
       }
       this.setData({
         coaches: Coaches,

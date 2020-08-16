@@ -7,9 +7,9 @@ class AppointModel extends CloudRequest {
     getAppoint(callBack){
         console.log("我们到getAppoint了")
         this.request({
-            url: "getappoint",
+            url: "getAppoint",
             success: res => {
-                console.log(res.data);
+                //console.log(res.data);
               callBack(res)
             }
         })
@@ -31,4 +31,4 @@ class AppointModel extends CloudRequest {
     }
 
 }
-export {AppointModel }
+export { AppointModel }

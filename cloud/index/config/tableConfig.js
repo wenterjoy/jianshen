@@ -7,5 +7,5 @@ module.exports = {
   PRODUCT_CATEGORY : 'product_category',
   ORDER:"order",
   ORDER_DETAIL:"order_detail",
-  APPOINT: 'appoint'
+  APPOINT: 'coach'
 }

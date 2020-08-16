@@ -1,5 +1,7 @@
 // home.js
+import { ImageModel } from '../../models/ImageModel.js'
 var app = getApp()
+let image = new ImageModel()
 Page({
 
   /**
@@ -21,58 +23,83 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad');
-    var that = this;
-    wx.setNavigationBarTitle({
-      title: wx.getStorageSync('mallName')
-    });
-    wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/banner/list',
-      data: {
-        key: 'mallName'
-      },
-      success: function (res) {
-        var banners = [];
-        var envpics = [];
-        // for (var i = 0; i < res.data.data.length; i++){
-        //   if (res.data.data[i].type == "about"){
-        //     banners.push(res.data.data[i]);
-        //   }
-        //   else if (res.data.data[i].type == "env"){
-        //     envpics.push(res.data.data[i]);
-        //   }
-        // }
-        // that.setData({
-        //   banners: banners,
-        //   envpic: envpics
-        // });
-      }
-    });
 
-    wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/cms/category/list',
-      success: function (res) {
-        var categories = [];
-        var coachcategoryid = 0;
-        var articlecategoryid = 0;
-        // for (var i = 0; i < res.data.data.length; i++) {
-        //   categories.push(res.data.data[i]);
-        //   if (res.data.data[i].name == "coach"){
-        //     coachcategoryid = res.data.data[i].id;
-        //     //console.log(coachcategoryid);
-        //   } else if (res.data.data[i].name == "FitnessArticles"){
-        //     articlecategoryid = res.data.data[i].id;
-        //   }
-        // }
-        // that.setData({
-        //   categories: categories,
-        //   coachcategoryid: coachcategoryid,
-        //   articlecategoryid: articlecategoryid
-        // });
-        // that.getNewsList(that.data.coachcategoryid);
-        // that.getNewsList(that.data.articlecategoryid);
-      }
-    });
+
+
+    console.log('onLoad');
+    var imagetest = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/home/home.jpg";
+    var envpics = [];
+     envpics.push(imagetest);
+     this.setData({
+     envpic: envpics
+     });
+    // image.getImage("home.jpg", res=>{
+    //   console.log(res);
+    //   //   let  menuCategories =  res.result.data.data
+    //   //   let Coaches = []
+    //   //   for(let index in menuCategories) {  
+    //   //     Coaches.push( menuCategories[index].category_name);
+    //   // }; 
+    //   var envpics = [];
+    //   envpics.push(res.reuslt.data);
+    //   console.log(res.reuslt.data);
+    //   this.setData({
+    //     envpic: envpics
+    //   });
+    // })
+
+
+    // var that = this;
+    // wx.setNavigationBarTitle({
+    //   title: wx.getStorageSync('mallName')
+    // });
+    // wx.request({
+    //   url: 'https://api.it120.cc/' + app.globalData.subDomain + '/banner/list',
+    //   data: {
+    //     key: 'mallName'
+    //   },
+    //   success: function (res) {
+    //     var banners = [];
+    //     var envpics = [];
+    //     // for (var i = 0; i < res.data.data.length; i++){
+    //     //   if (res.data.data[i].type == "about"){
+    //     //     banners.push(res.data.data[i]);
+    //     //   }
+    //     //   else if (res.data.data[i].type == "env"){
+    //     //     envpics.push(res.data.data[i]);
+    //     //   }
+    //     // }
+    //     // that.setData({
+    //     //   banners: banners,
+    //     //   envpic: envpics
+    //     // });
+    //   }
+    // });
+
+    // wx.request({
+    //   url: 'https://api.it120.cc/' + app.globalData.subDomain + '/cms/category/list',
+    //   success: function (res) {
+    //     var categories = [];
+    //     var coachcategoryid = 0;
+    //     var articlecategoryid = 0;
+    //     // for (var i = 0; i < res.data.data.length; i++) {
+    //     //   categories.push(res.data.data[i]);
+    //     //   if (res.data.data[i].name == "coach"){
+    //     //     coachcategoryid = res.data.data[i].id;
+    //     //     //console.log(coachcategoryid);
+    //     //   } else if (res.data.data[i].name == "FitnessArticles"){
+    //     //     articlecategoryid = res.data.data[i].id;
+    //     //   }
+    //     // }
+    //     // that.setData({
+    //     //   categories: categories,
+    //     //   coachcategoryid: coachcategoryid,
+    //     //   articlecategoryid: articlecategoryid
+    //     // });
+    //     // that.getNewsList(that.data.coachcategoryid);
+    //     // that.getNewsList(that.data.articlecategoryid);
+    //   }
+    // });
   },
 
   getNewsList: function (categoryId) {

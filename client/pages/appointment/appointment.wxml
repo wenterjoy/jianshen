@@ -40,8 +40,8 @@
                 </view>
                 <view class="article__info">
                     <view class="article__title">
-                    <view class="article__title_font">{{ item.title }}</view>
-                    <navigator url="/pages/coaches-detail/coaches-detail?id={{item.id}}">
+                    <view class="article__title_font">{{ item.coach_name }}</view>
+                    <navigator url="/pages/coaches-detail/coaches-detail?id={{item.coach_id}}">
                         <view class="appointBtn border-radius">
                             <view class="appointFont">约TA</view>
                         </view>
@@ -55,4 +55,4 @@
         </block>
     </view>
 </view>
-<view class="footaboutme"><text>技术支持：智汇番茄科技工作室\r\nWechat：18629027590</text></view>
+<view class="footaboutme"><text>技术支持：勤智科技\r\nWechat：18519222175</text></view>
