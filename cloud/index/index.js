@@ -9,6 +9,7 @@ const product = require('service/productService.js')
 const order = require('service/orderService.js')
 const baseTest = require('test/models/BaseModelTest.js')
 const appoint = require('service/appointService.js')
+const image = require('service/imageService.js')
 cloud.init()
 const IMAGEPREFIX = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/weappshop"
 
@@ -123,13 +124,19 @@ exports.main = async (event, context) => {
   })
 
   // 获取分类商品
-  app.router('getappoint', async (ctx, next) => {
+  app.router('getAppoint', async (ctx, next) => {
     ctx.data = await appoint.getAppointList()
     ctx.body = await returnUtil.success(ctx)
     await next()
   })
 
-
+  // 获取分类商品
+  app.router('getImage', async (ctx, next) => {
+    console.log(event.imageUrl);
+    ctx.data = await image.getImage(event.data.imageUrl)
+    ctx.body = await returnUtil.success(ctx)
+    await next()
+  })
 
 
 
