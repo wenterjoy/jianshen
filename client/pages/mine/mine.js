@@ -192,7 +192,7 @@ Page({
   },
 })
 
-
+/*
 import __config from '../../etc/config'
 const App = getApp()
 
@@ -332,3 +332,4 @@ Page({
         })
     },
 })
+ */
