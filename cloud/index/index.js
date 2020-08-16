@@ -10,7 +10,7 @@ const order = require('service/orderService.js')
 const baseTest = require('test/models/BaseModelTest.js')
 const appoint = require('service/appointService.js')
 cloud.init()
-const IMAGEPREFIX = "cloud://release-prod.7265-release-prod"
+const IMAGEPREFIX = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/weappshop"
 
 
 // 云函数入口函数
