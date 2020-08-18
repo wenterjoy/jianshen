@@ -3,7 +3,7 @@ import { AppointModel } from '../../models/AppointModel.js'
 var app = getApp()
 let appoint = new AppointModel()
 //const IMAGEPREFIX = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/" + "cocaches/"
-const IMAGEPREFIX = "../../images/" + "coaches/"
+//const IMAGEPREFIX = "../../images/" + "coaches/"
 
 Page({
 
@@ -87,7 +87,7 @@ Page({
       var Coaches = [];
       
       for (var i = 0; i < menuCategories.length; i++) {
-        menuCategories[i].pic = IMAGEPREFIX + menuCategories[i].pic;
+        //menuCategories[i].pic = IMAGEPREFIX + menuCategories[i].pic;
         console.log(menuCategories[i].pic);
         StarCoaches.push(menuCategories[i]);
         //console.log(res.result.data.data[i]);
@@ -97,8 +97,8 @@ Page({
         coaches: Coaches,
         starCoaches: StarCoaches
       });
-    })
-   
+    });
+
   },
   // getNewsList: function (categoryId) {
   //   if (categoryId == 0) {

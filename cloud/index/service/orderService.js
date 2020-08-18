@@ -10,11 +10,13 @@ const create = (orderData, userInfo) => {
     let update_time = new Date()
     for (let product of orderData.products) {
         let params_order_detail = {
-            product_id: product._id,
+            //product_id: product._id,
             product_name: product.product_name,
-            product_price: product.product_sell_price,
-            product_count: product.counts,
-            product_img: product.product_img,
+            //product_price: product.product_sell_price,
+            //product_count: product.counts,
+            //product_img: product.product_img,
+            product_coach_id: product.coach.coach_id,
+            product_coach_name: product.coach.coach_id,
             create_time: create_time,
             update_time: update_time
         }
@@ -23,11 +25,11 @@ const create = (orderData, userInfo) => {
     }
     // 订单信息
     let params_order = {
-        buyer_openid: userInfo.openId,
-        buyer_name: orderData.address.userName,
-        buyer_phone: orderData.address.phone,
-        buyer_address: orderData.address.detailAddress,
-        order_amount: orderData.account,
+        buyer_openid: "12345567789",
+        //buyer_name: orderData.address.userName,
+        //buyer_phone: orderData.address.phone,
+        //buyer_address: orderData.address.detailAddress,
+        //order_amount: orderData.account,
         order_status: 0,// 默认未付款
         create_time: new Date(),
         update_time: new Date(),
@@ -56,7 +58,6 @@ const getOrderList = (userInfo, page = 0, size = 20, order = {}) => {
     let options = { buyer_openid: userInfo.openId }
     return model.query(ORDER, ORDERFIELD, options, page, size, order)
 }
-
 
 
 module.exports = {

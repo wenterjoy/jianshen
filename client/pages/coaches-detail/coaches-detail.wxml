@@ -2,8 +2,8 @@
 <view class="container">
     <view class="coach-dest">
         <view class="coach">
-            <image class="item-coach" data-id="{{coach.id}}" src="{{coach.pic}}"/>
-            <view class="zan-font-12-bold">{{coach.title}}</view>
+            <image class="item-coach" data-id="{{coach.coach_id}}" src="{{coach.pic}}"/>
+            <view class="zan-font-12-bold">{{coach.coach_name}}</view>
         </view>
         <text class="zan-font-10">{{coach.descript}}</text>
     </view>

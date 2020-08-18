@@ -47,9 +47,6 @@ class OrderModel extends CloudRequest {
         })
     }
 
-    
-
-
 }
 
 export { OrderModel }

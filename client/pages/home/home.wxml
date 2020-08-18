@@ -1,4 +1,5 @@
 <!--home.wxml-->
+<!-- <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo"> -->
 <view class="container">
    <view class="swiper-container">
         <swiper class="swiper_box" 
@@ -87,5 +88,8 @@
             </navigator>
         </block>
     </view>
+     <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+        授权登录
+    </button>
 </view>
 <view class="footaboutme"><text>技术支持：勤智科技\r\nWechat：18519222175</text></view>

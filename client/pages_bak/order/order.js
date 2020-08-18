@@ -1,8 +1,6 @@
 // pages/order/order.js
 import { CartModel } from '../../models/CartModel.js'
-import {
-  OrderModel
-} from '../../models/OrdelModel.js'
+import { OrderModel } from '../../models/OrderModel.js'
 import { ProductModel } from '../../models/productModel.js'
 let cartmodel = new CartModel()
 let productModel = new ProductModel()

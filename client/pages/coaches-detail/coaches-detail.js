@@ -1,5 +1,10 @@
 // coaches-detail.js
+
 var app = getApp()
+import { CoachModel } from '../../models/CoachModel.js'
+let coachModel = new CoachModel()
+import { OrderModel } from '../../models/OrderModel.js'
+let orderModel = new OrderModel()
 Page({
 
   /**
@@ -11,7 +16,7 @@ Page({
       "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
       "15:00", "15:30", "16:00", "16:30", "17:00", "17:30",
       "18:00", "18:30", "19:00", "19:30", "20:00", "20:30",
-      "21:00", "21:30", "22:00"
+      "21:00", "21:30", "22:00", "23:00", "23:30", "24:00"
     ],
     endTime: ["请先选择起始时间"],
     selstartTime:"请选择",
@@ -19,28 +24,24 @@ Page({
     date : [],
     activedateid : 0,
     modalContent: "",
-    modalHidden: true
+    modalHidden: true,
+    account: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('onLoad');
+    //console.log('onLoad');
     const coachId = options.id;
+    console.log("coachId:" + coachId)
     const that = this;
-    wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/cms/news/detail',
-      data: {
-        id: coachId
-      },
-      success: function (res) {
-        console.log(res.data);
-        const coach = res.data.data;
+    coachModel.getCoachById(coachId, res=>{
+        console.log(res);
+        const coach = res.result.data.data[0];
         that.setData({
           coach
         })
-      }
     });
 
     var date = [];
@@ -145,7 +146,7 @@ Page({
       "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
       "15:00", "15:30", "16:00", "16:30", "17:00", "17:30",
       "18:00", "18:30", "19:00", "19:30", "20:00", "20:30",
-      "21:00", "21:30", "22:00"
+      "21:00", "21:30", "22:00", "23:00", "23:30", "24:00"
     ];
     if (this.data.date[e.currentTarget.id].datestr.indexOf(curtime) >= 0){
       var datetime = new Date();
@@ -203,7 +204,7 @@ Page({
     }
     const curselDay = this.data.date[this.data.activedateid].datestr;
     this.setData({
-      modalContent: '请确认您预定的教练信息\r\n教练: ' + this.data.coach.title + '\r\n预约日期: ' + curselDay +'\r\n预约时间: ' + this.data.selstartTime + '--' + this.data.selendTime + '\r\n请检查无误后点击确认',
+      modalContent: '请确认您预定的教练信息\r\n教练: ' + this.data.coach.coach_name + '\r\n预约日期: ' + curselDay +'\r\n预约时间: ' + this.data.selstartTime + '--' + this.data.selendTime + '\r\n请检查无误后点击确认',
       modalHidden: false
     });
   },
@@ -212,15 +213,94 @@ Page({
       modalContent: '',
       modalHidden: true
     });
-    wx.showModal({
-      title: '提示',
-      content: '具体预约方式待与商家沟通后继续开发。谢谢配合。',
-    })
+    // wx.showModal({
+    //   title: '提示',
+    //   content: '具体预约方式待与商家沟通后继续开发。谢谢配合。',
+    // })
+    const that = this;
+    // 提交订单
+    // // 判断是否选择地址
+    // if (this.data.address.length == 0) {
+    //   this._showToast('none', '请选择地址')
+    //   return
+    // }
+    
+      if (false) {//!res.authSetting['scope.userInfo']) {
+        // wx.showModal({
+        //   title: '授权提示',
+        //   content: '下单需要在个人中心授权！',
+        //   success(res) {
+        //     wx.switchTab({
+        //       //url: '/pages/my/my'
+        //     })
+        //   }
+        // })
+      } else {
+        // 判断是否是旧订单
+        if (this.data.oldOrder) {
+          this._showToast('none', '订单已生成，无需重复提交')
+          return
+        }
+        // 地址拼接
+        let orderData = {
+          products
+          //account
+        }
+        let products = []
+        var product = {
+          product_name: "私教课",
+          coach: that.data.coach,
+          selstartTime: that.data.selstartTime,
+          selendTime: that.data.selendTime
+        }
+        products.push(product)
+        orderData.products = products
+        //orderData.account = {}
+        // 创建订单
+        orderModel.creat(orderData, res => {
+          console.log("订单创建结果：")
+          console.log(res)
+          if (res.result.code == 0) {
+            that._showToast('none', '订单创建成功!')
+            // 设置成就订单
+            that.setData({
+              oldOrder: true
+            })
+            
+            // if (this.data.from == 'cart') {
+            //   let ids = []
+            //   let products = this.data.products
+            //   for (let i = 0; i < products.length; i++) {
+            //     ids.push(products[i]._id);
+            //   }
+            //   cartmodel.delete(ids, res => { })
+            // }
+
+            // wx.showModal({
+            //   title: '支付提示',
+            //   content: '支付暂未实现！',
+            //   success(res) {
+            //     wx.switchTab({
+            //       url: '/pages/my/my'
+            //     })
+            //   }
+            // })
+          }
+        })
+
+
+      }
   },
   modalHideCancle: function () {
     this.setData({
       modalContent: '',
       modalHidden: true
     });
+  },
+  _showToast: function (type, msg) {
+    wx.showToast({
+      icon: type,
+      title: msg
+    })
   }
 })

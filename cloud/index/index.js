@@ -10,6 +10,7 @@ const order = require('service/orderService.js')
 const baseTest = require('test/models/BaseModelTest.js')
 const appoint = require('service/appointService.js')
 const image = require('service/imageService.js')
+const coach = require('service/coachService.js')
 cloud.init()
 const IMAGEPREFIX = "cloud://release-prod.7265-release-prod/"
 
@@ -114,15 +115,6 @@ exports.main = async (event, context) => {
     await next();
   })
 
-  /***************************    云函数调用   *************************************/
-
-  app.router('callFunc', async (ctx, next) => {
-    // test 可参数类型 是否决定传参
-    ctx.data = "云函数之间的调用"
-    ctx.body = await returnUtil.success(ctx);
-    await next();
-  })
-
   // 获取分类商品
   app.router('getAppoint', async (ctx, next) => {
     ctx.data = await appoint.getAppointList()
@@ -130,15 +122,29 @@ exports.main = async (event, context) => {
     await next()
   })
 
-  // 获取分类商品
+
+  // 获取教练头像
   app.router('getImage', async (ctx, next) => {
-    console.log(event.imageUrl);
     ctx.data = await image.getImage(event.data.imageUrl)
     ctx.body = await returnUtil.success(ctx)
     await next()
   })
 
+  // 获取教练
+  app.router('getCoachById', async (ctx, next) => {
+    console.log(event.data);
+    ctx.data = await coach.getCoachById(event.data.coach_id)
+    ctx.body = await returnUtil.success(ctx)
+    await next()
+  })
 
+ // 获取教练
+ app.router('getUserInfo', async (ctx, next) => {
+  console.log(event.data);
+  ctx.data = await cloud.getWXContext()
+  ctx.body = await returnUtil.success(ctx)
+  await next()
+})
 
   // 轮播图片地址拼接
   function _bannerItem(data) {

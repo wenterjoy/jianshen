@@ -245,3 +245,9 @@ swiper-item image {
   color: #ccc;
   font-size: 10px;
 }
+
+.bottom {
+  border-radius: 80rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
+}

@@ -106,7 +106,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '李大力的健身房',
-      desc: '经常打卡还可以领免费次卡哦',
+      desc: '自律成就健康',
       path: 'pages/home/home'
     }
   },
