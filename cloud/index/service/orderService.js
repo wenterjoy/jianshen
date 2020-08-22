@@ -30,7 +30,7 @@ const create = (orderData) => {
         //buyer_phone: orderData.address.phone,
         //buyer_address: orderData.address.detailAddress,
         //order_amount: orderData.account,
-        status: 0,// 默认未付款
+        order_status: 0,// 默认未付款
         create_time: new Date(),
         update_time: new Date(),
         orderdetail: orderdetailS
