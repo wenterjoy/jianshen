@@ -4,11 +4,11 @@ class UserModel extends CloudRequest {
      * 获取用户数据根据openid
      * @param {*} callBack 
      */
-    getUserInfoByOpenId(open_id, callBack){
+    getUserByOpenId(openId, callBack){
         console.log("我们到getUserInfoByOpenId了")
         this.request({
-            url: "getUserInfoByOpenId",
-            data:{open_id:open_id},
+            url: "getUserByOpenId",
+            data:{openId:openId},
             success: res => {
               callBack(res)
             }

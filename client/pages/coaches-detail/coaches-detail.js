@@ -241,11 +241,7 @@ Page({
           this._showToast('none', '订单已生成，无需重复提交')
           return
         }
-        // 地址拼接
-        let orderData = {
-          products
-          //account
-        }
+       
         let products = []
         var product = {
           product_name: "私教课",
@@ -253,9 +249,17 @@ Page({
           selstartTime: that.data.selstartTime,
           selendTime: that.data.selendTime
         }
+       
+        var openId = app.globalData.openId;
         products.push(product)
-        orderData.products = products
-        //orderData.account = {}
+        // 地址拼接
+        let orderData = {
+          products,
+          openId: openId
+        }
+        orderData.products = products;
+        console.log("订单对应的openId")
+        console.log(orderData.openId)
         // 创建订单
         orderModel.creat(orderData, res => {
           console.log("订单创建结果：")

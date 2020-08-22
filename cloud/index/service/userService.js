@@ -30,8 +30,9 @@ const create = (openId, userInfo) => {
  * 根据订单id获取订单信息
  * @param {*} orderId 
  */
-const getUserInfoByOpenId = (openId) => {
-    return model.findById(USER, USERFIELD, openId)
+const getUserByOpenId = (openId) => {
+    let options = { openId: openId }
+    return model.query(USER, USERFIELD, options)
 }
 
 // /**
@@ -48,5 +49,5 @@ const getUserInfoByOpenId = (openId) => {
 
 module.exports = {
     create,
-    getUserInfoByOpenId
+    getUserByOpenId
 }

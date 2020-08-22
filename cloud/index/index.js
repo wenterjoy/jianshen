@@ -160,7 +160,7 @@ exports.main = async (event, context) => {
  // 获取用户信息根据openId
  app.router('getUserByOpenId', async (ctx, next) => {
   console.log(event.data);
-  ctx.data = await user.getUserByOpenId(event.openId)
+  ctx.data = await user.getUserByOpenId(event.data.openId)
   ctx.body = await returnUtil.success(ctx)
   await next()
 })

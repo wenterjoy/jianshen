@@ -142,10 +142,11 @@ App({
         console.log(res)
         this.globalData.openId = res.result.data.OPENID;
         let openId = res.result.data.OPENID;
-        user.getUserInfoByOpenId(openId, res=>{
+        console.log("openId:" + openId)
+        user.getUserByOpenId(openId, res=>{
           console.log("user.getUserInfoByOpenId")
           console.log(res);
-          if (null != res.reuslt) {
+          if (0 == res.result.code && 1 <= res.result.data.data.length) {
             console.log("we have this user")
           }
           else {

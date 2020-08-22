@@ -1,5 +1,7 @@
 var wxpay = require('../../utils/pay.js')
 var app = getApp()
+import { OrderModel } from '../../models/OrderModel.js'
+let orderModel = new OrderModel()
 Page({
   data:{
     statusType: ["全部", "待付款", "已完成"],//"待发货","待收货",
@@ -61,6 +63,10 @@ Page({
   },
   getOrderStatistics : function () {
     var that = this;
+    orderModel.getOrderById(app.globalData.openId , res=>{
+      wx.hideLoading();
+    });
+
     wx.request({
       url: 'https://api.it120.cc/' + app.globalData.subDomain + '/order/statistics',
       data: { token: app.globalData.token },

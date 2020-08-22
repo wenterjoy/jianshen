@@ -3,7 +3,7 @@ const { ORDER } = require('../config/tableConfig.js')
 const { ORDERFIELD } = require('../fields/orderField.js')
 
 //orderData,userInfo
-const create = (orderData, userInfo) => {
+const create = (orderData) => {
     let orderdetailS = []
     // 添加订单详情
     let create_time = new Date()
@@ -25,12 +25,12 @@ const create = (orderData, userInfo) => {
     }
     // 订单信息
     let params_order = {
-        buyer_openid: userInfo.openId,
+        buyer_openid: orderData.openId,
         //buyer_name: orderData.address.userName,
         //buyer_phone: orderData.address.phone,
         //buyer_address: orderData.address.detailAddress,
-        order_amount: orderData.account,
-        order_status: 0,// 默认未付款
+        //order_amount: orderData.account,
+        status: 0,// 默认未付款
         create_time: new Date(),
         update_time: new Date(),
         orderdetail: orderdetailS
