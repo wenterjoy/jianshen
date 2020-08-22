@@ -190,6 +190,28 @@ Page({
     });
     this.closePopupTap();
   },
+  bindtap(e) {
+    const index = e.currentTarget.dataset.index
+    const path = e.currentTarget.dataset.path
+
+    switch(index) {
+      case 0:
+        App.WxService.showModal({
+                title: '友情提示',
+                content: '确定要清除缓存吗？',
+            })
+            .then(data => {
+              if(data.confirm == 1)
+              {
+                App.WxService.clearStorage()
+                this.signIn()
+              }
+            })
+        break
+      default:
+        App.WxService.navigateTo(path)
+    }
+  },
 })
 
 /*
@@ -279,28 +301,7 @@ Page({
     		})
     	})
     },
-    bindtap(e) {
-    	const index = e.currentTarget.dataset.index
-		const path = e.currentTarget.dataset.path
-
-		switch(index) {
-			case 0:
-				App.WxService.showModal({
-		            title: '友情提示',
-		            content: '确定要清除缓存吗？',
-		        })
-		        .then(data => {
-              if(data.confirm == 1)
-              {
-                App.WxService.clearStorage()
-                this.signIn()
-              }
-            })
-				break
-			default:
-				App.WxService.navigateTo(path)
-		}
-    },
+    
     // logout() {
     // 	App.WxService.showModal({
     //         title: '友情提示',

@@ -24,7 +24,23 @@ Page({
    */
   onLoad: function (options) {
 
-
+    //  wx.cloud.callFunction({
+    //   // 要调用的云函数名称
+    //   name: 'index',
+    //   // 传递给云函数的参数
+    //   data: {
+    //     // 要调用的路由的路径，传入准确路径或者通配符*
+    //     $url: 'getUserOpenId',  
+    //   },
+    //   success: res => {
+    //     console.log("getUserInfo success")
+    //     console.log(res)
+    //   },
+    //   fail: err => {
+    //     console.log("getUserInfo fail")
+    //     console.log(err)
+    //   }
+    // })
 
     console.log('onLoad');
     var imagetest = "cloud://qsmart-bnful.7173-qsmart-bnful-1302190475/images/home/home.jpg";

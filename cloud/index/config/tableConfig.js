@@ -8,5 +8,6 @@ module.exports = {
   ORDER:"order",
   ORDER_DETAIL:"order_detail",
   APPOINT: 'coach',
-  COACH: 'coach'
+  COACH: 'coach',
+  USER: 'user'
 }

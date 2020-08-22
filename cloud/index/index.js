@@ -11,6 +11,7 @@ const baseTest = require('test/models/BaseModelTest.js')
 const appoint = require('service/appointService.js')
 const image = require('service/imageService.js')
 const coach = require('service/coachService.js')
+const user = require('service/userService.js')
 cloud.init()
 const IMAGEPREFIX = "cloud://release-prod.7265-release-prod/"
 
@@ -106,6 +107,8 @@ exports.main = async (event, context) => {
   })
 
 
+
+
   /***************************    测试   *****************************************/
 
   app.router('tests', async (ctx, next) => {
@@ -138,13 +141,30 @@ exports.main = async (event, context) => {
     await next()
   })
 
- // 获取教练
- app.router('getUserInfo', async (ctx, next) => {
+ // 获取用户openId
+ app.router('getUserOpenId', async (ctx, next) => {
   console.log(event.data);
   ctx.data = await cloud.getWXContext()
   ctx.body = await returnUtil.success(ctx)
   await next()
 })
+
+ // 生成用户
+ app.router('creatUser', async (ctx, next) => {
+  //event.data.orderData,event.userInfo
+  ctx.data = await user.create(event.data.openId, event.data.userInfo)
+  ctx.body = await returnUtil.success(ctx)
+  await next()
+})
+
+ // 获取用户信息根据openId
+ app.router('getUserByOpenId', async (ctx, next) => {
+  console.log(event.data);
+  ctx.data = await user.getUserByOpenId(event.openId)
+  ctx.body = await returnUtil.success(ctx)
+  await next()
+})
+
 
   // 轮播图片地址拼接
   function _bannerItem(data) {

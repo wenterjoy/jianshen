@@ -88,8 +88,11 @@
             </navigator>
         </block>
     </view>
-     <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+    
+     <view class="type-container">
+        <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
         授权登录
-    </button>
+        </button>
+        </view>
 </view>
-<view class="footaboutme"><text>技术支持：勤智科技\r\nWechat：18519222175</text></view>
+<view class="footaboutme"><text>技术支持：琴智科技\r\nWechat：18519222175</text></view>

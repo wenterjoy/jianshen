@@ -1,7 +1,7 @@
 // pages/my/my.js
 import {
   OrderModel
-} from '../../models/OrdelModel.js'
+} from '../../models/OrderModel.js'
 let orderModel = new OrderModel();
 Page({
 

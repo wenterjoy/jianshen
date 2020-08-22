@@ -1,7 +1,12 @@
 //app.js
+import { UserModel } from '/models/UserModel.js'
+
+//const userField = require("../cloud/index/fields/userField.js");
+
+let user = new UserModel()
 App({
   onLaunch: function () {
-    
+    console.log('大神App onLaunch');
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -19,27 +24,12 @@ App({
       })
     }
 
-    wx.cloud.callFunction({
-      // 要调用的云函数名称
-      name: 'index',
-      // 传递给云函数的参数
-      data: {
-        // 要调用的路由的路径，传入准确路径或者通配符*
-        $url: 'getUserInfo', 
-        data: "" 
-      },
-      success: res => {
-        console.log(res)
-      },
-      fail: err => {
-        console.log(err)
-      }
-    })
-
-    return;
-    this.login();
+   
     this.getUserInfo();
-    this.globalData = {}
+    this.registerUser();
+    //this.login();
+    // this.getUserInfo();
+    // this.globalData = {}
 
   },
   login : function () {
@@ -64,6 +54,7 @@ App({
     // }
     wx.login({
       success: function (res) {
+        console.log("wx.login success")
         console.log(res)
         wx.request({
           url: 'https://api.it120.cc/'+ that.globalData.subDomain +'/user/wxapp/login',
@@ -89,43 +80,96 @@ App({
             that.globalData.token = res.data.data.token;
           }
         })
-      }
-    })
-  },
-  registerUser: function () {
-    var that = this;
-    wx.login({
-      success: function (res) {
-        var code = res.code; // 微信登录接口返回的 code 参数，下面注册接口需要用到
-        wx.getUserInfo({
-          success: function (res) {
-            var iv = res.iv;
-            var encryptedData = res.encryptedData;
-            // 下面开始调用注册接口
-            wx.request({
-              url: 'https://api.it120.cc/' + that.globalData.subDomain +'/user/wxapp/register/complex',
-              data: {code:code,encryptedData:encryptedData,iv:iv}, // 设置请求的 参数
-              success: (res) =>{
-                wx.hideLoading();
-                that.login();
-              }
-            })
-          }
-        })
+      },
+      fail: err => {
+        console.log(" wx.login fail")
+        console.log(err)
       }
     })
   },
   getUserInfo:function() {
+    
     wx.getUserInfo({
       success:(data) =>{
+        console.log("wx.getUserInfo success")
+        console.log(data)
         this.globalData.userInfo = data.userInfo;
         console.log(this.globalData.userInfo);
         return this.globalData.userInfo;
+      },
+      fail: err => {
+        console.log("wx.getUserInfo fail")
+        console.log(err)
+      }
+    })
+    return;
+    // //wx.getUserInfo({
+    //   wx.cloud.callFunction({
+    //     // 要调用的云函数名称
+    //     name: 'index',
+    //     // 传递给云函数的参数
+    //     data: {
+    //       // 要调用的路由的路径，传入准确路径或者通配符*
+    //       $url: 'getUserOpenId',  
+    //     },
+    //     //success:(data) =>{
+    //     success: res => {
+    //       console.log("getUserOpenId success")
+    //       console.log(res)
+    //       let openId = res.data.OPENID;
+
+    //       console.log(this.globalData.userInfo);
+    //       return this.globalData.userInfo;
+    //     },
+    //     fail: err => {
+    //       console.log("getUserOpenId fail")
+    //       console.log(err)
+    //     }
+    // })
+  },
+  registerUser: function () {
+    console.log("registerUser");
+     wx.cloud.callFunction({
+      // 要调用的云函数名称
+      name: 'index',
+      // 传递给云函数的参数
+      data: {
+        // 要调用的路由的路径，传入准确路径或者通配符*
+        $url: 'getUserOpenId',  
+      },
+      success: res => {
+        console.log("getUserOpenId success")
+        console.log(res)
+        this.globalData.openId = res.result.data.OPENID;
+        let openId = res.result.data.OPENID;
+        user.getUserInfoByOpenId(openId, res=>{
+          console.log("user.getUserInfoByOpenId")
+          console.log(res);
+          if (null != res.reuslt) {
+            console.log("we have this user")
+          }
+          else {
+            console.log("we need create this user")
+            user.create(openId, this.globalData.userInfo, res=>{
+               if(0 == res.result.code) {
+                  console.log("user create success")
+               }
+               else {
+                console.log("user create fail")
+               }
+            });
+          }
+        });
+      },
+      fail: err => {
+        console.log("getUserOpenId fail")
+        console.log(err)
       }
     })
   },
   globalData:{
     userInfo:null,
+    openId:null,
     subDomain:"34vu54u7vuiuvc546d"
   }
 })

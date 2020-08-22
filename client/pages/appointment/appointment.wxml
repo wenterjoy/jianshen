@@ -1,10 +1,10 @@
 <!--appointment.wxml-->
 <view class="container">
   <view class="zan-panel">
-    <view class="zan-cell">
+    <!--<view class="zan-cell">
       <view class="zan-cell__bd">上月明星教练</view>
       <view class="zan-cell__ft">Star</view>
-    </view>
+    </view> -->
         <block wx:for="{{ starCoaches }}">
             <!-- <navigator url="/pages/articles-detail/index?id={{item.id}}"> -->
             <view class="article__item">
