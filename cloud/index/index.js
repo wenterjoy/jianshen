@@ -101,7 +101,7 @@ exports.main = async (event, context) => {
 
   // 获取订单信息
   app.router('getOrderList', async (ctx, next) => {
-    ctx.data = await order.getOrderList(event.userInfo)
+    ctx.data = await order.getOrderList(event.data.openId)
     ctx.body = await returnUtil.success(ctx)
     await next()
   })

@@ -15,10 +15,10 @@ const create = (orderData) => {
             //product_price: product.product_sell_price,
             //product_count: product.counts,
             //product_img: product.product_img,
-            product_coach_id: product.coach.coach_id,
-            product_coach_name: product.coach.coach_name,
-            create_time: create_time,
-            update_time: update_time
+            coach_id: product.coach.coach_id,
+            coach_name: product.coach.coach_name,
+            start_time: create_time,
+            end_time: update_time
         }
         orderdetailS.push(params_order_detail)
 
@@ -30,7 +30,8 @@ const create = (orderData) => {
         //buyer_phone: orderData.address.phone,
         //buyer_address: orderData.address.detailAddress,
         //order_amount: orderData.account,
-        order_status: 0,// 默认未付款
+        status:  orderData.status,// 默认未付款
+        statusStr:  orderData.statusStr,
         create_time: new Date(),
         update_time: new Date(),
         orderdetail: orderdetailS
@@ -53,10 +54,10 @@ const getOrderById = (orderId) => {
  * 根据用户openid获取信息
  * @param {*} userInfo 
  */
-const getOrderList = (userInfo, page = 0, size = 20, order = {}) => {
+const getOrderList = (openId, page = 0, size = 20, order = {}) => {
     order.name = 'create_time'
     order.orderBy = 'desc'
-    let options = { buyer_openid: userInfo.openId }
+    let options = { buyer_openid: openId }
     return model.query(ORDER, ORDERFIELD, options, page, size, order)
 }
 

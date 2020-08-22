@@ -246,16 +246,17 @@ Page({
         var product = {
           product_name: "私教课",
           coach: that.data.coach,
-          selstartTime: that.data.selstartTime,
-          selendTime: that.data.selendTime
+          start_time: that.data.selstartTime,
+          end_time: that.data.selendTime
         }
-       
         var openId = app.globalData.openId;
         products.push(product)
         // 地址拼接
         let orderData = {
           products,
-          openId: openId
+          openId: openId,
+          status: 0,
+          statusStr: "已下单"
         }
         orderData.products = products;
         console.log("订单对应的openId")

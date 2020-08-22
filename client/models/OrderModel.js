@@ -11,7 +11,6 @@ class OrderModel extends CloudRequest {
             url: "creatOrder",
             data: { orderData: orderData },
             success: res => {
-                console.log(res.data);
                 callBack(res)
             }
         })
@@ -27,7 +26,6 @@ class OrderModel extends CloudRequest {
             url: "getOrderById",
             data: { orderId: orderId },
             success: res => {
-                console.log(res.data);
                 callBack(res)
             }
         })
@@ -37,11 +35,13 @@ class OrderModel extends CloudRequest {
      * 查询订单
      * @param {*} callBack 
      */
-    getOrderList(callBack) {
+    getOrderList(openId, callBack) {
         this.request({
             url: "getOrderList",
+            data: {
+                openId: openId
+            },
             success: res => {
-                console.log(res.data);
                 callBack(res)
             }
         })

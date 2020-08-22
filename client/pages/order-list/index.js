@@ -63,9 +63,7 @@ Page({
   },
   getOrderStatistics : function () {
     var that = this;
-    orderModel.getOrderById(app.globalData.openId , res=>{
-      wx.hideLoading();
-    });
+    
 
     wx.request({
       url: 'https://api.it120.cc/' + app.globalData.subDomain + '/order/statistics',
@@ -113,17 +111,21 @@ Page({
     if (that.data.currentTpye == 2) {
       postData.status = 4
     }
-    this.getOrderStatistics();
-    wx.request({
-      url: 'https://api.it120.cc/' + app.globalData.subDomain + '/order/list',
-      data: postData,
-      success: (res) => {
-        wx.hideLoading();
-        if (res.data.code == 0) {
+    //this.getOrderStatistics();
+    // wx.request({
+    //   url: 'https://api.it120.cc/' + app.globalData.subDomain + '/order/list',
+    //   data: postData,
+    orderModel.getOrderList(app.globalData.openId, res=>{
+      wx.hideLoading();
+      console.log("getOrderList ")
+      console.log(res)
+      // success: (res) => {
+      //   wx.hideLoading();
+        if (res.result.code == 0) {
           that.setData({
-            orderList: res.data.data.orderList,
-            logisticsMap : res.data.data.logisticsMap,
-            goodsMap : res.data.data.goodsMap
+            orderList: res.result.data.data
+            // logisticsMap : res.result.data.data.logisticsMap,
+            // goodsMap : res.result.data.data.goodsMap
           });
         } else {
           this.setData({
@@ -132,9 +134,7 @@ Page({
             goodsMap: {}
           });
         }
-      }
-    })
-    
+      });
   },
   onHide:function(){
     // 生命周期函数--监听页面隐藏
