@@ -246,8 +246,7 @@ Page({
         var product = {
           product_name: "私教课",
           coach: that.data.coach,
-          start_time: that.data.selstartTime,
-          end_time: that.data.selendTime
+          
         }
         var openId = app.globalData.openId;
         products.push(product)
@@ -255,8 +254,10 @@ Page({
         let orderData = {
           products,
           openId: openId,
-          status: 0,
-          statusStr: "已下单"
+          status: 4,
+          statusStr: "已下单",
+          start_time: that.data.selstartTime,
+          end_time: that.data.selendTime
         }
         orderData.products = products;
         console.log("订单对应的openId")

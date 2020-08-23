@@ -4,6 +4,7 @@ module.exports = {
         //buyer_name: true,
         // buyer_phone: true,
         // buyer_address: true,
+        cocah_name: true,
         order_amount: true,
         orderdetail: true,
         create_time: true,
@@ -11,6 +12,10 @@ module.exports = {
         buyer_openid: true,
         status: true,
         statusStr: true,
-        update_time: true
+        update_time: true,
+        start_time: true,
+        end_time: true,
+        pic: true
+        
     }
 }

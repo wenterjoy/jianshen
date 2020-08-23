@@ -122,10 +122,12 @@ Page({
       // success: (res) => {
       //   wx.hideLoading();
         if (res.result.code == 0) {
+          
           that.setData({
-            orderList: res.result.data.data
+            orderList: res.result.data.data,
             // logisticsMap : res.result.data.data.logisticsMap,
-            // goodsMap : res.result.data.data.goodsMap
+            goodsMap : that.orderList
+
           });
         } else {
           this.setData({

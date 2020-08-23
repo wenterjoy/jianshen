@@ -12,7 +12,7 @@ const getCoachById = (coachid) => {
   let options = { coach_id: coachid }
   return cloud.database().collection('coach')
   .where({
-    coach_id: "000001"
+    coach_id: coachid
   })
   .field({
       coach_name: true,

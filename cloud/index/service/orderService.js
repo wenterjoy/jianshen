@@ -8,6 +8,8 @@ const create = (orderData) => {
     // 添加订单详情
     let create_time = new Date()
     let update_time = new Date()
+    let order_pic = "";
+    let order_coach_name = "";
     for (let product of orderData.products) {
         let params_order_detail = {
             //product_id: product._id,
@@ -17,12 +19,14 @@ const create = (orderData) => {
             //product_img: product.product_img,
             coach_id: product.coach.coach_id,
             coach_name: product.coach.coach_name,
-            start_time: create_time,
-            end_time: update_time
+            pic: product.coach.pic
         }
+        order_pic = params_order_detail.pic
+        order_coach_name = params_order_detail.coach_name
         orderdetailS.push(params_order_detail)
 
     }
+
     // 订单信息
     let params_order = {
         buyer_openid: orderData.openId,
@@ -34,8 +38,11 @@ const create = (orderData) => {
         statusStr:  orderData.statusStr,
         create_time: new Date(),
         update_time: new Date(),
-        orderdetail: orderdetailS
-        
+        orderdetail: orderdetailS,
+        start_time: orderData.start_time,
+        end_time: orderData.end_time,
+        pic: order_pic,
+        coach_name: order_coach_name
     }
 
     // 订单生成
